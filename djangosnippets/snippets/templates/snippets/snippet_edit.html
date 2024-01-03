@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+<h2>スニペットの編集</h2>
+
+<form action="" method="post">    
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  {% bootstrap_button button_type="submit" content="保存" %}
+</form>
+
+<div class="source-code">
+  {{ snippet.code|pygmentize:"python3" }}
+</div>
+
+<p>{{ snippet.description }}</p>
+
+{% endblock main %}
+
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Djangoスニペット</title>
+</head>
+<body>
+  <h1>スニペットの編集</h1>
+  <form action="" method="post">    
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">保存</button>
+  </form>
+</body>
+</html> -->
+
+<!-- 
+button type="submit"は
+form actionのURLにformの値をPOSTする
+空の場合は同じページにPOST
+ -->
